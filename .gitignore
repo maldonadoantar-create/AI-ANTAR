@@ -1,2 +1,8 @@
 __pycache__/
 *.pyc
+
+# Node / Vite
+node_modules/
+dist/
+*.local
+npm-debug.log*

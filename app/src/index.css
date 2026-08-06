@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dusk over the aqueduct — deep plum sky, cantera-stone surfaces, three warm accents */
+  --color-dusk: #241726;
+  --color-dusk-deep: #1a1020;
+  --color-panel: #2f1e33;
+  --color-panel-raised: #3a2740;
+  --color-cantera: #e8b4a8;
+  --color-cantera-soft: #f0d2c8;
+  --color-arco: #f0714f;
+  --color-arco-dim: #c2543a;
+  --color-jacaranda: #a084e8;
+  --color-jacaranda-dim: #7c62c2;
+  --color-gold: #f0b23d;
+  --color-ink: #2a1712;
+  --color-cream: #f7ede4;
+  --color-cream-dim: #c9b8c4;
+  --color-line: rgba(247, 237, 228, 0.12);
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --shadow-card: 0 24px 48px -20px rgba(10, 4, 12, 0.55), 0 2px 6px rgba(10, 4, 12, 0.3);
+  --shadow-pop: 0 12px 24px -8px rgba(240, 113, 79, 0.45);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-dusk-deep);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+/* Wide viewports: an ambient dusk backdrop with a faint arch colonnade,
+   so the app reads as a place, not a bare column, around the phone shell. */
+@media (min-width: 768px) {
+  body {
+    background:
+      radial-gradient(120% 70% at 50% -10%, rgba(240, 113, 79, 0.16), transparent 60%),
+      radial-gradient(90% 60% at 85% 100%, rgba(160, 132, 232, 0.14), transparent 55%),
+      var(--color-dusk-deep);
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: radial-gradient(
+      circle at 50% 100%,
+      transparent 0,
+      transparent 58%,
+      rgba(247, 237, 228, 0.05) 58%,
+      rgba(247, 237, 228, 0.05) 66%,
+      transparent 66%
+    );
+    background-size: 64px 64px;
+    background-position: 0 bottom;
+    background-repeat: repeat-x;
+  }
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: var(--color-arco);
+  color: var(--color-dusk-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Repeating arch frieze — the aqueduct silhouette used as an ambient motif */
+.arch-frieze {
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    transparent 0,
+    transparent 60%,
+    var(--frieze-color, rgba(247, 237, 228, 0.14)) 60%,
+    var(--frieze-color, rgba(247, 237, 228, 0.14)) 66%,
+    transparent 66%
+  );
+  background-size: 28px 28px;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+/* The aqueduct arch, as a card silhouette. Fixed vertical radius keeps the
+   curve consistent regardless of card width. */
+.rounded-arch {
+  border-radius: 50% 50% 16px 16px / 108px 108px 16px 16px;
+}
+
+.rounded-arch-sm {
+  border-radius: 50% 50% 10px 10px / 56px 56px 10px 10px;
+}
+
+@keyframes rise-together {
+  from {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-rise {
+  animation: rise-together 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
