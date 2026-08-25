@@ -1,0 +1,29 @@
+{
+  "name": "ai-antar-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto Remotion para edicion de video programatica (AI-ANTAR)",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render HelloWorld out/video.mp4",
+    "render": "remotion render",
+    "still": "remotion still",
+    "upgrade": "remotion upgrade",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.516",
+    "@remotion/renderer": "4.0.516",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "4.0.516"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
